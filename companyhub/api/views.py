@@ -43,8 +43,7 @@ def get_and_delete_single_company(request, pk):
         return JsonResponse(company_serializer.data)
 
     elif request.method == "PUT":
-        company_data = JSONParser().parse(request)
-        company_serializer = CompaniesSerializer(company, data=company_data)
+        company_serializer = CompaniesSerializer(company, data=request.data)
         if company_serializer.is_valid():
             company_serializer.save()
             return JsonResponse(company_serializer.data)
