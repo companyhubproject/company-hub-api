@@ -6,8 +6,6 @@
 #
 asgiref==3.4.1
     # via django
-backports.zoneinfo==0.2.1
-    # via django
 django==3.2.12
     # via
     #   -r requirements.in
@@ -15,6 +13,8 @@ django==3.2.12
 djangorestframework==3.13.1
     # via -r requirements.in
 pytz==2021.3
-    # via djangorestframework
+    # via
+    #   django
+    #   djangorestframework
 sqlparse==0.4.2
     # via django
