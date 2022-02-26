@@ -1,8 +1,13 @@
 from rest_framework import serializers
-from .models import Company
+from .models import Administration, Company
 
 
-class CompaniesSerializer(serializers.ModelSerializer):
+class Administration(serializers.ModelSerializer):
+    class Meta:
+        model = Administration
+        fields = "__all__"
+
+class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
         fields = "__all__"
