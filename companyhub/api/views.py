@@ -7,7 +7,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status
 
 from api.models import Company
-from api.serializers import CompaniesSerializer
+from api.serializers import CompanySerializer
 
 
 @csrf_exempt
@@ -16,13 +16,13 @@ def list_and_create_company(request):
     if request.method == "GET":
 
         companies = Company.objects.all()
-        serializer = CompaniesSerializer(companies, many=True)
+        serializer = CompanySerializer(companies, many=True)
 
         return JsonResponse({"companies": serializer.data})
 
     elif request.method == "POST":
 
-        serializer = CompaniesSerializer(data=request.data)
+        serializer = CompanySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse({"companies": serializer.data}, status=status.HTTP_201_CREATED)
@@ -39,11 +39,11 @@ def get_and_delete_single_company(request, pk):
         return JsonResponse({"message": "The company does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == "GET":
-        company_serializer = CompaniesSerializer(company)
+        company_serializer = CompanySerializer(company)
         return JsonResponse(company_serializer.data)
 
     elif request.method == "PUT":
-        company_serializer = CompaniesSerializer(company, data=request.data)
+        company_serializer = CompanySerializer(company, data=request.data)
         if company_serializer.is_valid():
             company_serializer.save()
             return JsonResponse(company_serializer.data)
